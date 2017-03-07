@@ -12,6 +12,7 @@ public class ThreadServer extends Thread{
 	static ServerSocket ss;
 	static ArrayList<PrintWriter> clientlist=new ArrayList<PrintWriter>();
 	static Socket socketClient;
+	ArrayList<Integer> numeriTabellona = new ArrayList<Integer>();
 	public ThreadServer(Server ser){
 		s=ser;
 	}
@@ -64,10 +65,8 @@ public class ThreadServer extends Thread{
 				clientlist.add(out);
 				ThreadConnessioni tc = new ThreadConnessioni(socketClient);
 				//thread resta in attesa
-				ArrayList<Integer> 
-				if(in.readLine().equalsIgnoreCase("chiedo")){
-					for()
-				}
+				
+			
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

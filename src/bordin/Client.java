@@ -201,7 +201,7 @@ public class Client {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setSize(450, 274);
 		shell.setText("Client");
 		
 		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
@@ -241,23 +241,6 @@ public class Client {
 		});
 		btnConnessione.setBounds(135, 21, 155, 25);
 		btnConnessione.setText("Connessione");
-		
-		Button btnChiedi = new Button(shell, SWT.NONE);
-		btnChiedi.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				try {
-					PrintWriter out = new PrintWriter(client.getOutputStream(),true);
-					out.println("chiedo");
-					
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnChiedi.setBounds(175, 215, 75, 25);
-		btnChiedi.setText("Chiedi");
 
 	}
 

@@ -9,6 +9,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class Server {
 
@@ -62,6 +65,7 @@ public class Server {
 		table.setBounds(20, 49, 404, 199);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
+		
 		TableItem item;
 		for (int i = 1; i <= 10; i++) {
 			tblclmnNewColumn = new TableColumn(table, SWT.NONE);
@@ -82,6 +86,19 @@ public class Server {
 
 		ThreadServer s = new ThreadServer(this);
 		s.start();
+		
+		Button btnEstraiNumero = new Button(shlTabellone, SWT.NONE);
+		btnEstraiNumero.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				int random = (int) (Math.random()*90+1);
+				/*for(){
+					
+				}*/
+			}
+		});
+		btnEstraiNumero.setBounds(328, 10, 96, 25);
+		btnEstraiNumero.setText("Estrai numero");
 
 	}
 }
