@@ -19,6 +19,8 @@
 
 import java.util.ArrayList;
 
+import bordin.Utility;
+
 public class Giocatore {
 	private final String nome;
 	private Cartella cart;

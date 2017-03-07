@@ -56,15 +56,18 @@ public class ThreadServer extends Thread{
 	public void run(){
 		
 		try {
-			ss=new ServerSocket();
+			ss=new ServerSocket(9999);
 			while(true){
-				
 				socketClient=ss.accept();
 				PrintWriter out =new PrintWriter(socketClient.getOutputStream(),true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
 				clientlist.add(out);
 				ThreadConnessioni tc = new ThreadConnessioni(socketClient);
 				//thread resta in attesa
-				
+				ArrayList<Integer> 
+				if(in.readLine().equalsIgnoreCase("chiedo")){
+					for()
+				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

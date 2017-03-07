@@ -19,6 +19,8 @@
 
 import java.util.ArrayList;
 
+import bordin.Utility;
+
 public class Partita {
 	final private Giocatore[] giocatori;
 	final private Tabellone tab;

@@ -19,6 +19,8 @@
 
 import java.util.Arrays;
 
+import bordin.Utility;
+
 public class Cartella {
 	private int[] numeri; // numeri contenuti in questa cartella
 	final private boolean[] segnati; // true se il numero corrispondente è segnato
