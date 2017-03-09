@@ -4,6 +4,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.List;
+
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
@@ -12,12 +15,15 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 
 public class Server {
+	private Button btnEstraiNumero;
 
 	protected Shell shlTabellone;
 	private Table table;
 	private TableColumn tblclmnNewColumn;
+	private ArrayList<Integer> numeriGenerati = new ArrayList<Integer>();
 
 	/**
 	 * Launch the application.
@@ -63,17 +69,16 @@ public class Server {
 
 		table = new Table(shlTabellone, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setBounds(20, 49, 404, 199);
-		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
-		
-		TableItem item;
+
+		TableItem item = null;
 		for (int i = 1; i <= 10; i++) {
 			tblclmnNewColumn = new TableColumn(table, SWT.NONE);
 			tblclmnNewColumn.setWidth(40);
 			tblclmnNewColumn.setText(i + "");
 			tblclmnNewColumn.setResizable(false);
 		}
-		
+
 		int l = 0;
 		for (int j = 0; j < 9; j++) {
 			item = new TableItem(table, SWT.NONE);
@@ -86,18 +91,56 @@ public class Server {
 
 		ThreadServer s = new ThreadServer(this);
 		s.start();
-		
-		Button btnEstraiNumero = new Button(shlTabellone, SWT.NONE);
+
+		btnEstraiNumero = new Button(shlTabellone, SWT.NONE);
 		btnEstraiNumero.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				int random = (int) (Math.random()*90+1);
-				/*for(){
-					
-				}*/
+				if (numeriGenerati.size() == 90) {
+					btnEstraiNumero.setEnabled(false);
+					return;
+				}
+				int random = -1;
+				do {
+					random = (int) (Math.random() * 90 + 1);
+					System.out.println(random);
+					if (numeriGenerati.indexOf(random) != -1) {
+						System.out.println("non esiste");
+					}
+
+				} while (numeriGenerati.indexOf(random) != -1);
+				numeriGenerati.add(random);
+				int column;
+				int row;
+				if (random % 10 != 0) {
+					row = random / 10;
+					column = random % 10 - 1;
+				} else {
+					row = (random / 10)-1;
+					column = 9;
+				}
+				System.out.println("C: " + column + " r: " + row);
+				changeColour(row, column);
+				s.getRandom(random);
+				
+			}
+			
+			private void changeColour(int row, int column) {
+				// TODO Auto-generated method stub
+				Display.getDefault().asyncExec(new Runnable() {
+
+					@Override
+					public void run() {
+						Display d = Display.getDefault();
+						table.getItem(row).setBackground(column, d.getSystemColor(SWT.COLOR_GREEN));
+
+					}
+
+				});
+
 			}
 		});
-		btnEstraiNumero.setBounds(328, 10, 96, 25);
+		btnEstraiNumero.setBounds(328, 265, 96, 25);
 		btnEstraiNumero.setText("Estrai numero");
 
 	}

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ThreadServer extends Thread{
 	static Server s;
+	private int random;
 	static ServerSocket ss;
 	static ArrayList<PrintWriter> clientlist=new ArrayList<PrintWriter>();
 	static Socket socketClient;
@@ -64,13 +65,18 @@ public class ThreadServer extends Thread{
 				BufferedReader in = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
 				clientlist.add(out);
 				ThreadConnessioni tc = new ThreadConnessioni(socketClient);
-				//thread resta in attesa
 				
+				for (PrintWriter printWriter : clientlist) {
+					printWriter.println(random);
+				}
 			
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void getRandom(int r){
+		random=r;
 	}
 }

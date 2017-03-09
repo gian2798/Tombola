@@ -201,18 +201,19 @@ public class Client {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 274);
+		shell.setSize(450, 257);
 		shell.setText("Client");
 		
 		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
-		table.setBounds(21, 87, 360, 100);
+		table.setBounds(21, 76, 365, 92);
 		for(int i = 0; i<9 ; i++){
 			TableColumn column = new TableColumn(table, SWT.NONE);
 			column.setWidth(40);
 			column.setText("");
 			column.setResizable(false);
+			table.setHeaderVisible(false);
 		}
 		
 		TableItem item;
@@ -248,7 +249,16 @@ public class Client {
 		Display.getDefault().asyncExec(new Runnable(){
 			@Override
 			public void run() {
-				//list.add(numeroRicevuto);
+				Display d = Display.getDefault();
+				System.out.println("sono qui");
+				for(int i=0;i<numeriTabella.size();i++){
+					if(Integer.parseInt(numeroRicevuto)==numeriTabella.get(i)){
+						for (TableItem tableItem : controllo) {
+							//tableItem.setBackground(tableItem, d.getSystemColor(SWT.COLOR_BLUE));
+						}
+					}
+				}
+				
 			}
 		});
 		
