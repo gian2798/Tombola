@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Server {
 	private Button btnEstraiNumero;
@@ -59,12 +60,15 @@ public class Server {
 	 */
 	protected void createContents() {
 		shlTabellone = new Shell();
+		shlTabellone.setBackground(SWTResourceManager.getColor(127, 255, 0));
 		shlTabellone.setSize(450, 400);
 		shlTabellone.setText("Tabellone");
 
 		Label lblServerone = new Label(shlTabellone, SWT.NONE);
+		lblServerone.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.BOLD));
+		lblServerone.setBackground(SWTResourceManager.getColor(127, 255, 0));
 		lblServerone.setAlignment(SWT.CENTER);
-		lblServerone.setBounds(10, 10, 414, 15);
+		lblServerone.setBounds(10, 10, 414, 25);
 		lblServerone.setText("Serverone");
 
 		table = new Table(shlTabellone, SWT.BORDER | SWT.FULL_SELECTION);
@@ -140,7 +144,7 @@ public class Server {
 
 			}
 		});
-		btnEstraiNumero.setBounds(328, 265, 96, 25);
+		btnEstraiNumero.setBounds(20, 265, 404, 25);
 		btnEstraiNumero.setText("Estrai numero");
 
 	}

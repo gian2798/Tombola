@@ -20,13 +20,14 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Client {
-	ArrayList<Integer> numeriTabella = new ArrayList<Integer>();
-	ArrayList<TableItem> controllo = new ArrayList<TableItem>();
+	static ArrayList<Integer> numeriTabella = new ArrayList<Integer>();
+	static ArrayList<TableItem> controllo = new ArrayList<TableItem>();
 	int numeri[];
 	static Socket client;
 	final private boolean[] segnati=new boolean [15]; 
 	protected Shell shell;
 	private Table table;
+	String tipo;
 	/**
 	 * Launch the application.
 	 * @param args
@@ -202,6 +203,7 @@ public class Client {
 	 */
 	protected void createContents() {
 		shell = new Shell();
+		shell.setBackground(SWTResourceManager.getColor(0, 206, 209));
 		shell.setSize(450, 324);
 		shell.setText("Client");
 		
@@ -245,23 +247,54 @@ public class Client {
 		btnConnessione.setBounds(135, 21, 155, 25);
 		btnConnessione.setText("Connessione");
 		
+		
 		Button btnAmbo = new Button(shell, SWT.RADIO);
+		btnAmbo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				tipo="a";
+			}
+		});
 		btnAmbo.setBounds(33, 193, 62, 16);
 		btnAmbo.setText("Ambo");
 		
 		Button btnTerna = new Button(shell, SWT.RADIO);
+		btnTerna.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				tipo="t";
+			}
+		});
 		btnTerna.setBounds(120, 193, 62, 16);
 		btnTerna.setText("Terna");
 		
 		Button btnQuaterna = new Button(shell, SWT.RADIO);
+		btnQuaterna.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				tipo="t";
+			}
+		});
 		btnQuaterna.setBounds(220, 193, 70, 16);
 		btnQuaterna.setText("Quaterna");
 		
 		Button btnCinquina = new Button(shell, SWT.RADIO);
+		btnCinquina.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				tipo="t";
+			}
+		});
 		btnCinquina.setBounds(308, 193, 90, 16);
 		btnCinquina.setText("Cinquina");
 		
 		Button btnTombola = new Button(shell, SWT.RADIO);
+		btnTombola.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				tipo="tombola";
+			}
+		});
 		btnTombola.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		btnTombola.setAlignment(SWT.CENTER);
 		btnTombola.setBounds(135, 220, 155, 16);
@@ -271,7 +304,54 @@ public class Client {
 		btnAvvisa.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				switch(tipo){
+				case "a":
+					vincitaA();
+				break;
+				case "t":
+					vincitaT();
+					break;
+				case "q":
+					vincitaQ();
+					break;
+				case "c":
+					vincitaC();
+					break;
+				case "tombola":
+					vincitaTombo();
+					break;
+				}
+			}
+
+			private void vincitaTombo() {
+				// TODO Auto-generated method stub
 				
+			}
+
+			private void vincitaC() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			private void vincitaQ() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			private void vincitaT() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			private void vincitaA() {
+				// TODO Auto-generated method stub
+				int controllo=0;
+				for(int j=0;j<9;j++){
+					System.out.println(segnati[j]);
+					if(segnati[j]==true){
+						controllo++;
+					}
+				}
 			}
 		});
 		btnAvvisa.setBounds(175, 242, 75, 25);
@@ -284,13 +364,14 @@ public class Client {
 			@Override
 			public void run() {
 				Display d = Display.getDefault();
-				System.out.println("sono qui");
 				for(int i=0;i<numeriTabella.size();i++){
 					if(Integer.parseInt(numeroRicevuto)==numeriTabella.get(i)){
+						segnati[i]=true;
 						for(int j=0;j<3;j++){
 							for(int k=0;k<9;k++){
 								if(table.getItem(j).getText(k).equalsIgnoreCase(numeroRicevuto)){
 									table.getItem(j).setBackground(k, d.getSystemColor(SWT.COLOR_RED));
+									
 								}
 							}
 						}
