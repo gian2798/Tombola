@@ -103,7 +103,7 @@ public class Server {
 				int random = -1;
 				do {
 					random = (int) (Math.random() * 90 + 1);
-					System.out.println(random);
+					
 					if (numeriGenerati.indexOf(random) != -1) {
 						System.out.println("non esiste");
 					}
@@ -119,7 +119,7 @@ public class Server {
 					row = (random / 10)-1;
 					column = 9;
 				}
-				System.out.println("C: " + column + " r: " + row);
+				
 				changeColour(row, column);
 				s.getRandom(random);
 				

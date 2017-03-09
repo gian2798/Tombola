@@ -65,10 +65,6 @@ public class ThreadServer extends Thread{
 				BufferedReader in = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
 				clientlist.add(out);
 				ThreadConnessioni tc = new ThreadConnessioni(socketClient);
-				
-				for (PrintWriter printWriter : clientlist) {
-					printWriter.println(random);
-				}
 			
 			}
 		} catch (IOException e) {
@@ -78,5 +74,9 @@ public class ThreadServer extends Thread{
 	}
 	public void getRandom(int r){
 		random=r;
+		System.out.println("r:"+random);
+		for (PrintWriter printWriter : clientlist) {
+			printWriter.println(random);
+		}
 	}
 }

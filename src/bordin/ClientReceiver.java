@@ -26,6 +26,7 @@ public class ClientReceiver extends Thread{
 				
 				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				String numeroRicevuto = in.readLine();
+				System.out.println("cr, ra:"+numeroRicevuto);
 				cs.addNumero(numeroRicevuto);
 				
 			} catch (IOException e) {

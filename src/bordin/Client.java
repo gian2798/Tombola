@@ -17,6 +17,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Client {
 	ArrayList<Integer> numeriTabella = new ArrayList<Integer>();
@@ -201,13 +202,13 @@ public class Client {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 257);
+		shell.setSize(450, 324);
 		shell.setText("Client");
 		
 		table = new Table(shell, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
-		table.setBounds(21, 76, 365, 92);
+		table.setBounds(33, 76, 365, 92);
 		for(int i = 0; i<9 ; i++){
 			TableColumn column = new TableColumn(table, SWT.NONE);
 			column.setWidth(40);
@@ -232,6 +233,7 @@ public class Client {
 					
 					client = new Socket("localhost",9999);
 					ClientReceiver cr = new ClientReceiver(Client.this,client);
+					cr.start();
 					System.out.println("fatto!");
 					
 				} catch (IOException e1) {
@@ -242,6 +244,38 @@ public class Client {
 		});
 		btnConnessione.setBounds(135, 21, 155, 25);
 		btnConnessione.setText("Connessione");
+		
+		Button btnAmbo = new Button(shell, SWT.RADIO);
+		btnAmbo.setBounds(33, 193, 62, 16);
+		btnAmbo.setText("Ambo");
+		
+		Button btnTerna = new Button(shell, SWT.RADIO);
+		btnTerna.setBounds(120, 193, 62, 16);
+		btnTerna.setText("Terna");
+		
+		Button btnQuaterna = new Button(shell, SWT.RADIO);
+		btnQuaterna.setBounds(220, 193, 70, 16);
+		btnQuaterna.setText("Quaterna");
+		
+		Button btnCinquina = new Button(shell, SWT.RADIO);
+		btnCinquina.setBounds(308, 193, 90, 16);
+		btnCinquina.setText("Cinquina");
+		
+		Button btnTombola = new Button(shell, SWT.RADIO);
+		btnTombola.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		btnTombola.setAlignment(SWT.CENTER);
+		btnTombola.setBounds(135, 220, 155, 16);
+		btnTombola.setText("Tombola");
+		
+		Button btnAvvisa = new Button(shell, SWT.NONE);
+		btnAvvisa.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
+		btnAvvisa.setBounds(175, 242, 75, 25);
+		btnAvvisa.setText("Avvisa");
 
 	}
 
@@ -253,8 +287,12 @@ public class Client {
 				System.out.println("sono qui");
 				for(int i=0;i<numeriTabella.size();i++){
 					if(Integer.parseInt(numeroRicevuto)==numeriTabella.get(i)){
-						for (TableItem tableItem : controllo) {
-							//tableItem.setBackground(tableItem, d.getSystemColor(SWT.COLOR_BLUE));
+						for(int j=0;j<3;j++){
+							for(int k=0;k<9;k++){
+								if(table.getItem(j).getText(k).equalsIgnoreCase(numeroRicevuto)){
+									table.getItem(j).setBackground(k, d.getSystemColor(SWT.COLOR_RED));
+								}
+							}
 						}
 					}
 				}
