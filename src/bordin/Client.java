@@ -301,56 +301,191 @@ public class Client {
 		btnTombola.setText("Tombola");
 		
 		Button btnAvvisa = new Button(shell, SWT.NONE);
+		btnAvvisa.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		btnAvvisa.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				switch(tipo){
 				case "a":
 					vincitaA();
+					System.out.println("voleeeeeevi...ma non va un azz..");
 				break;
 				case "t":
 					vincitaT();
+					System.out.println("voleeeeeevi...ma non va un azz..");
 					break;
 				case "q":
 					vincitaQ();
+					System.out.println("voleeeeeevi...ma non va un azz..");
 					break;
 				case "c":
 					vincitaC();
+					System.out.println("voleeeeeevi...ma non va un azz..");
 					break;
 				case "tombola":
 					vincitaTombo();
+					System.out.println("voleeeeeevi...ma non va un azz..");
 					break;
 				}
 			}
 
 			private void vincitaTombo() {
 				// TODO Auto-generated method stub
-				
+				int controllo=0;
+				for(int i=0;i<15;i++){
+					if(segnati[i]==true){
+						controllo++;
+					}
+				}
+				if(controllo==15){
+					System.out.println("Tombola");
+				}
 			}
 
 			private void vincitaC() {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stubint controllo=0;
+				int controllo=0;
+				int controllo2=0;
+				int controllo3=0;
+				int row;
+				for(int i=0;i<3;i++){
+					for(int j=0;j<9;j++){
+						if(segnati[j]==true && i==0){
+							controllo++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==1){
+							controllo2++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==2){
+							controllo3++;
+							//row = table.get;
+						}
+					}
+				}
+				System.out.println(controllo);
+				System.out.println(controllo2);
+				System.out.println(controllo3);
+				if(controllo==2){
+					System.out.print("ambo");
+				}
+				if(controllo2==2){
+					System.out.print("ambo");
+				}
+				if(controllo3==2){
+					System.out.print("ambo");
+				}
 				
 			}
 
 			private void vincitaQ() {
 				// TODO Auto-generated method stub
+				int controllo=0;
+				int controllo2=0;
+				int controllo3=0;
+				int row;
+				for(int i=0;i<3;i++){
+					for(int j=0;j<9;j++){
+						if(segnati[j]==true && i==0){
+							controllo++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==1){
+							controllo2++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==2){
+							controllo3++;
+							//row = table.get;
+						}
+					}
+				}
+				System.out.println(controllo);
+				System.out.println(controllo2);
+				System.out.println(controllo3);
+				if(controllo==4){
+					System.out.print("quat");
+				}
+				if(controllo2==4){
+					System.out.print("quat");
+				}
+				if(controllo3==4){
+					System.out.print("quat");
+				}
 				
 			}
 
 			private void vincitaT() {
 				// TODO Auto-generated method stub
+				int controllo=0;
+				int controllo2=0;
+				int controllo3=0;
+				int row;
+				for(int i=0;i<3;i++){
+					for(int j=0;j<9;j++){
+						if(segnati[j]==true && i==0){
+							controllo++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==1){
+							controllo2++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==2){
+							controllo3++;
+							//row = table.get;
+						}
+					}
+				}
+				System.out.println(controllo);
+				System.out.println(controllo2);
+				System.out.println(controllo3);
+				if(controllo==3){
+					System.out.print("terna");
+				}
+				if(controllo2==3){
+					System.out.print("terna");
+				}
+				if(controllo3==3){
+					System.out.print("terna");
+				}
 				
 			}
 
 			private void vincitaA() {
 				// TODO Auto-generated method stub
 				int controllo=0;
-				for(int j=0;j<9;j++){
-					System.out.println(segnati[j]);
-					if(segnati[j]==true){
-						controllo++;
+				int controllo2=0;
+				int controllo3=0;
+				int row;
+				for(int i=0;i<3;i++){
+					for(int j=0;j<9;j++){
+						if(segnati[j]==true && i==0){
+							controllo++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==1){
+							controllo2++;
+							//row = table.get;
+						}
+						if(segnati[j]==true && i==2){
+							controllo3++;
+							//row = table.get;
+						}
 					}
+				}
+				System.out.println(controllo);
+				System.out.println(controllo2);
+				System.out.println(controllo3);
+				if(controllo==2){
+					System.out.print("ambo");
+				}
+				if(controllo2==2){
+					System.out.print("ambo");
+				}
+				if(controllo3==2){
+					System.out.print("ambo");
 				}
 			}
 		});

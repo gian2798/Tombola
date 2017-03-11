@@ -65,7 +65,6 @@ public class ThreadServer extends Thread{
 				BufferedReader in = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
 				clientlist.add(out);
 				ThreadConnessioni tc = new ThreadConnessioni(socketClient);
-			
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
